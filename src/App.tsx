@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from 'react';
+import { Fragment, useEffect, useState, useMemo, useRef } from 'react';
 import Papa from 'papaparse';
 import { differenceInDays, parseISO, isValid, max, format, getYear } from 'date-fns';
 import { Award, Briefcase, Users, X, Settings2, Plus, Trash2 } from 'lucide-react';
@@ -11,6 +11,7 @@ interface EventRecord {
   start_date: string;
   end_date: string;
   description: string;
+  tags?: string;
 }
 
 interface SubEvent {
@@ -29,6 +30,9 @@ interface ParsedEvent extends Omit<EventRecord, 'start_date' | 'end_date' | 'des
   topOffsetPixels: number;
   widthPixels: number;
   lane: number;
+  tags?: string;
+  tagList: string[];
+  tagGroup: string;
 }
 
 interface LaneGroupDef {
@@ -79,8 +83,8 @@ export default function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const showHidden = searchParams.has('show_all') || searchParams.get('mode') === 'full';
 
-  const { events, laneGroups, maxLanes, timelineWidth, years } = useMemo(() => {
-    if (!rawEvents.length) return { events: [], laneGroups: [], maxLanes: 0, timelineWidth: 1000, years: [] };
+  const { events, laneGroups, maxLanes, timelineWidth, years, earliestYear } = useMemo(() => {
+    if (!rawEvents.length) return { events: [], laneGroups: [], maxLanes: 0, timelineWidth: 1000, years: [], earliestYear: '2020' };
 
     const baseEvents = rawEvents
       .filter(item => {
@@ -92,7 +96,12 @@ export default function App() {
       if (!isValid(st)) st = new Date();
       let ed = item.end_date ? parseISO(item.end_date) : st;
       if (!isValid(ed)) ed = st;
-      return { ...item, id: idx, startDate: st, endDate: ed };
+      const tagList = (item.tags || '')
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(Boolean);
+      const tagGroup = tagList.length ? tagList[0].toLowerCase() : 'ungrouped';
+      return { ...item, id: idx, startDate: st, endDate: ed, tags: item.tags, tagList, tagGroup };
     });
 
     baseEvents.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
@@ -115,6 +124,8 @@ export default function App() {
         const g = mergedEvents[groupIdx];
         g.subEvents.push({ startDate: ev.startDate, endDate: ev.endDate, description: ev.description });
         if (ev.endDate > g.endDate) g.endDate = ev.endDate;
+        g.tagList = Array.from(new Set([...g.tagList, ...ev.tagList]));
+        g.tagGroup = g.tagList.length ? g.tagList[0].toLowerCase() : 'ungrouped';
       } else {
         mergedEvents.push({
           id: ev.id,
@@ -123,6 +134,9 @@ export default function App() {
           type: ev.type,
           startDate: ev.startDate,
           endDate: ev.endDate,
+          tags: ev.tags,
+          tagList: ev.tagList,
+          tagGroup: ev.tagGroup,
           subEvents: [{ startDate: ev.startDate, endDate: ev.endDate, description: ev.description }]
         });
       }
@@ -179,43 +193,68 @@ export default function App() {
     });
 
     const processEntityGroup = (label: string, eventsSubset: any[]) => {
-      const localRoleLanes: {start: number, end: number}[][] = [];
+      const tagBuckets = new Map<string, any[]>();
       for (const ev of eventsSubset) {
-        let assignedLane = 0;
-        for (let i = 0; i < localRoleLanes.length; i++) {
-          let hasOverlap = false;
-          for (const interval of localRoleLanes[i]) {
-            const evStart = ev.startDate.getTime();
-            const evEnd = ev.endDate.getTime() > ev.startDate.getTime() ? ev.endDate.getTime() : ev.startDate.getTime();
-            const bufferMs = 15 * 24 * 60 * 60 * 1000;
-            if (evStart < interval.end + bufferMs && evEnd > interval.start - bufferMs) {
-               hasOverlap = true; break;
-            }
-          }
-          if (!hasOverlap) { assignedLane = i; break; }
-          assignedLane = i + 1;
-        }
-        if (!localRoleLanes[assignedLane]) localRoleLanes[assignedLane] = [];
-        const st = Math.max(ev.startDate.getTime(), dynamicStartDate.getTime());
-        localRoleLanes[assignedLane].push({ start: st, end: ev.endDate.getTime() > st ? ev.endDate.getTime() : st });
-
-        const relativeDaysStart = differenceInDays(ev.startDate, dynamicStartDate);
-        let rawDuration = differenceInDays(ev.endDate, ev.startDate);
-        if (rawDuration < 0) rawDuration = 0;
-
-        const absoluteLaneIdx = currentAbsoluteLane + assignedLane;
-        processed.push({
-          ...ev,
-          lane: absoluteLaneIdx,
-          durationDays: rawDuration,
-          leftOffsetPixels: relativeDaysStart * pixelsPerDay,
-          topOffsetPixels: absoluteLaneIdx * laneHeight,
-          widthPixels: Math.max(rawDuration * pixelsPerDay, 80), // Set base min width to 80px to safely fit small items
-        });
+        const groupKey = ev.tagGroup || 'ungrouped';
+        if (!tagBuckets.has(groupKey)) tagBuckets.set(groupKey, []);
+        tagBuckets.get(groupKey)!.push(ev);
       }
-      if (localRoleLanes.length > 0) {
-        computedLaneGroups.push({ label, startLane: currentAbsoluteLane, laneCount: localRoleLanes.length });
-        currentAbsoluteLane += localRoleLanes.length;
+
+      const orderedTagGroups = Array.from(tagBuckets.keys()).sort((a, b) => {
+        if (a === 'ungrouped') return 1;
+        if (b === 'ungrouped') return -1;
+        return a.localeCompare(b);
+      });
+
+      for (const tagGroup of orderedTagGroups) {
+        const eventsForTag = tagBuckets.get(tagGroup)!;
+        eventsForTag.sort((a, b) => {
+          const durA = Math.max(0, a.endDate.getTime() - a.startDate.getTime());
+          const durB = Math.max(0, b.endDate.getTime() - b.startDate.getTime());
+          if (durB !== durA) return durB - durA;
+          return a.startDate.getTime() - b.startDate.getTime();
+        });
+
+        const localRoleLanes: {start: number, end: number}[][] = [];
+        for (const ev of eventsForTag) {
+          let assignedLane = 0;
+          for (let i = 0; i < localRoleLanes.length; i++) {
+            let hasOverlap = false;
+            for (const interval of localRoleLanes[i]) {
+              const evStart = ev.startDate.getTime();
+              const evEnd = ev.endDate.getTime() > ev.startDate.getTime() ? ev.endDate.getTime() : ev.startDate.getTime();
+              if (evStart < interval.end && evEnd > interval.start) {
+                hasOverlap = true;
+                break;
+              }
+            }
+            if (!hasOverlap) { assignedLane = i; break; }
+            assignedLane = i + 1;
+          }
+          if (!localRoleLanes[assignedLane]) localRoleLanes[assignedLane] = [];
+          const st = Math.max(ev.startDate.getTime(), dynamicStartDate.getTime());
+          localRoleLanes[assignedLane].push({ start: st, end: ev.endDate.getTime() > st ? ev.endDate.getTime() : st });
+
+          const relativeDaysStart = differenceInDays(ev.startDate, dynamicStartDate);
+          let rawDuration = differenceInDays(ev.endDate, ev.startDate);
+          if (rawDuration < 0) rawDuration = 0;
+
+          const absoluteLaneIdx = currentAbsoluteLane + assignedLane;
+          processed.push({
+            ...ev,
+            lane: absoluteLaneIdx,
+            durationDays: rawDuration,
+            leftOffsetPixels: relativeDaysStart * pixelsPerDay,
+            topOffsetPixels: absoluteLaneIdx * laneHeight,
+            widthPixels: Math.max(rawDuration * pixelsPerDay, 80), // Set base min width to 80px to safely fit small items
+          });
+        }
+
+        if (localRoleLanes.length > 0) {
+          const laneLabel = tagGroup === 'ungrouped' ? label : `${label} • ${tagGroup}`;
+          computedLaneGroups.push({ label: laneLabel, startLane: currentAbsoluteLane, laneCount: localRoleLanes.length });
+          currentAbsoluteLane += localRoleLanes.length;
+        }
       }
     };
 
@@ -257,7 +296,18 @@ export default function App() {
        if (days >= 0) yList.push({ year: y, left: days * pixelsPerDay });
     }
 
-    return { events: processed, laneGroups: computedLaneGroups, maxLanes: currentAbsoluteLane, timelineWidth: finalTimelineWidth, years: yList };
+    const earliestYear = processed.length
+      ? format(new Date(Math.min(...processed.map(e => e.startDate.getTime()))), 'yyyy')
+      : '2020';
+
+    return {
+      events: processed,
+      laneGroups: computedLaneGroups,
+      maxLanes: currentAbsoluteLane,
+      timelineWidth: finalTimelineWidth,
+      years: yList,
+      earliestYear,
+    };
   }, [rawEvents, grouping, pixelsPerDay, laneHeight]);
 
   const closeExpanded = (e?: React.MouseEvent) => {
@@ -373,28 +423,30 @@ export default function App() {
       <header className="p-6 md:p-8 shrink-0 border-b bg-white relative z-20 shadow-sm flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-2">Student Activity Timeline</h1>
-          <p className="text-slate-500 text-sm md:text-base max-w-2xl">A chronicle of achievements stretching back to {events.length ? format(events[0].startDate, "yyyy") : "2020"}. Click an event to expand details.</p>
+          <p className="text-slate-500 text-sm md:text-base max-w-2xl">A chronicle of achievements stretching back to {events.length ? earliestYear : "2020"}. Click an event to expand details.</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200">
-            <span className="hidden md:inline text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-2 mr-3">Group By</span>
-            <div className="flex gap-1">
-              {(['none', 'organisation', 'type'] as const).map((opt) => {
-                const labels = { none: 'None', organisation: 'Org', type: 'Role Type' };
-                return (
-                  <button
-                    key={opt}
-                    onClick={() => setGrouping(opt)}
-                    className={`px-3 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer ${
-                      grouping === opt 
-                        ? 'bg-white text-slate-800 shadow-sm ring-1 ring-slate-900/5' 
-                        : 'text-slate-500 hover:text-slate-700 hover:bg-black/5'
-                    }`}
-                  >
-                    {labels[opt]}
-                  </button>
-                );
-              })}
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Group By</span>
+            <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200">
+              <div className="flex gap-1">
+                {(['none', 'organisation', 'type'] as const).map((opt) => {
+                  const labels = { none: 'None', organisation: 'Org', type: 'Role Type' };
+                  return (
+                    <button
+                      key={opt}
+                      onClick={() => setGrouping(opt)}
+                      className={`px-3 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer ${
+                        grouping === opt 
+                          ? 'bg-white text-slate-800 shadow-sm ring-1 ring-slate-900/5' 
+                          : 'text-slate-500 hover:text-slate-700 hover:bg-black/5'
+                      }`}
+                    >
+                      {labels[opt]}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <button 
@@ -409,17 +461,17 @@ export default function App() {
 
       {/* Main horizontally scrolling area */}
       <main ref={scrollContainerRef} className="flex-1 overflow-x-auto overflow-y-auto relative w-full custom-scrollbar">
-        <div className="relative mt-8 mb-32 ml-4 md:ml-32" style={{ width: timelineWidth, height: Math.max(maxLanes * laneHeight + 100, 400) }}>
+        <div className="relative mt-8 mb-8 ml-4 md:ml-32" style={{ width: timelineWidth, height: Math.max(maxLanes * laneHeight + 20, 400) }}>
           
           {/* Lane Group Labels */}
-          <div className="absolute left-0 top-0 bottom-0 pointer-events-none z-10" style={{ transform: 'translateX(-100%)', width: '100px' }}>
+          <div className="absolute left-0 top-0 bottom-0 pointer-events-none z-10" style={{ transform: 'translateX(-100%)', width: '120px' }}>
              {laneGroups.map((g, idx) => (
                 <div 
                   key={idx} 
                   className="absolute right-4 border-r-2 border-slate-300 pr-3 flex items-center justify-end"
                   style={{ top: g.startLane * laneHeight, height: g.laneCount * laneHeight }}
                 >
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest -rotate-90 origin-right whitespace-nowrap opacity-60 mix-blend-multiply">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-snug opacity-60 mix-blend-multiply break-words text-right max-w-[88px]">
                     {g.label}
                   </span>
                 </div>
@@ -462,35 +514,46 @@ export default function App() {
           {/* Events */}
           {events.map((ev) => {
             const orgColor = colors[ev.organisation] || DEFAULT_ORGANIZATION_COLOR;
-            const isDecoration = ev.type === 'decoration';
-            const isFunctionary = ev.type === 'functionary';
+            const normalizedType = ev.type?.trim().toLowerCase();
+            const isDecoration = normalizedType === 'decoration';
+            const isFunctionary = normalizedType === 'functionary';
             const isExpanded = expandedId === ev.id;
 
             return (
-              <div
-                key={ev.id}
-                onClick={(e) => { e.stopPropagation(); setExpandedId(isExpanded ? null : ev.id); }}
-                className={`absolute transition-all duration-300 cursor-pointer ${isExpanded ? 'z-50' : 'z-10 hover:z-30 hover:brightness-110'}`}
-                style={{
-                  top: ev.topOffsetPixels + 4, // Center slightly in lane
-                  left: ev.leftOffsetPixels,
-                  width: ev.widthPixels, 
-                  height: laneHeight - 12, // Maintain padding inside lane
-                }}
-              >
-                {isDecoration ? (
-                  <div className="relative group flex items-center h-full">
-                    <div className="absolute left-1/2 top-1 bottom-[-1000px] w-px border-l border-dashed -z-10 opacity-30 select-none pointer-events-none" style={{ borderColor: orgColor }}></div>
-                    <div 
-                      className="h-8 w-8 relative z-10 rounded-full shadow-md border-2 flex items-center justify-center text-white transform transition-transform group-hover:scale-110" 
-                      style={{ backgroundColor: orgColor, borderColor: 'white' }}
-                      title={ev.name}
-                    >
-                      <Award size={14} />
+              <Fragment key={ev.id}>
+                {isDecoration && (
+                  <div
+                    className="absolute w-px border-l border-dashed z-0 opacity-30 select-none pointer-events-none"
+                    style={{
+                      borderColor: orgColor,
+                      left: ev.leftOffsetPixels + 18,
+                      top: ev.topOffsetPixels + 4,
+                      bottom: 0,
+                    }}
+                  />
+                )}
+                <div
+                  onClick={(e) => { e.stopPropagation(); setExpandedId(isExpanded ? null : ev.id); }}
+                  className={`absolute transition-all duration-300 cursor-pointer ${isExpanded ? 'z-50' : 'z-10 hover:z-30 hover:brightness-110'}`}
+                  style={{
+                    top: ev.topOffsetPixels + 4, // Center slightly in lane
+                    left: ev.leftOffsetPixels,
+                    width: ev.widthPixels, 
+                    height: laneHeight - 12, // Maintain padding inside lane
+                  }}
+                >
+                  {isDecoration ? (
+                    <div className="relative group flex items-center h-full">
+                      <div 
+                        className="h-8 w-8 relative z-10 rounded-full shadow-md border-2 flex items-center justify-center text-white transform transition-transform group-hover:scale-110" 
+                        style={{ backgroundColor: orgColor, borderColor: 'white' }}
+                        title={ev.name}
+                      >
+                        <Award size={14} />
+                      </div>
+                      <div className="absolute inset-0 bg-white rounded-full blur-sm opacity-40 -z-10" style={{ backgroundColor: orgColor }}></div>
                     </div>
-                    <div className="absolute inset-0 bg-white rounded-full blur-sm opacity-40 -z-10" style={{ backgroundColor: orgColor }}></div>
-                  </div>
-                ) : (
+                  ) : (
                   <div 
                     className={`h-full w-full rounded shadow-sm overflow-hidden flex items-center px-2 border relative group`}
                     style={{ 
@@ -546,6 +609,7 @@ export default function App() {
                   </div>
                 )}
               </div>
+            </Fragment>
             );
           })}
         </div>

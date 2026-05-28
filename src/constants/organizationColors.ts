@@ -8,7 +8,7 @@ export const ORGANIZATION_COLORS: Record<string, string> = {
   ayy: '#6f0075',
   ho: '#D1262F',
   tspeksi: '#00047e',
-  fspeksi: '#FFFF00',
+  fspeksi: '#d8b668',
   mafia: '#000000',
   iw: '#808080',
   teekkarius: '#a4242a',
