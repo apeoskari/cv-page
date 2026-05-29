@@ -7,11 +7,12 @@ export const ORGANIZATION_COLORS: Record<string, string> = {
   inkubio: '#34855B',
   ayy: '#6f0075',
   ho: '#D1262F',
-  tspeksi: '#00047e',
+  tspeksi: '#808080',
   fspeksi: '#d8b668',
   mafia: '#000000',
-  iw: '#808080',
+  iw: '#DED1BB',
   teekkarius: '#a4242a',
+  as: '#00047e',
 };
 
 /**
