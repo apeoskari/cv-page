@@ -20,13 +20,14 @@ Apoptoosi XXI -toimari,inkubio,functionary,2024-06-01,2025-03-07,
 Spagukastike,inkubio,functionary,2025-01-01,2026-12-31,"Spagu = Koodi, eli killan koodeihin koskeva toimikunta jossa hääräilin erityisesti KiltisBot:in kanssa. Ikuisuusprojektina killan nettisivut."
 Killan edustaja TK:ssa,teekkarius,functionary,2025-01-01,2026-12-31,"TK = Teekkarikokous"
 Laulukirjatoimikunnan PJ,inkubio,functionary,2026-01-01,2027-03-01,"VIRPIn neljännestä numerosta vastuussa oleva toimikunta, jonka toisena puheenjohtaja olin."
-Arkistonhoitaja,inkubio,functionary,2026-01-01,2026-12-31,"Kenties se arkisto viimein luetteloidaan..."
-Mentori,inkubio,functionary,2026-01-01,2027-12-31,"Mentorina hallituslaiselle jos toiselle. Kahden vuoden pesti."
+Arkistonhoitaja,inkubio,functionary,2026-01-01,2027-12-31,"Kenties se arkisto viimein luetteloidaan..."
+Mentori,inkubio,functionary,2026-01-01,2026-12-31,"Mentorina hallituslaiselle jos toiselle. Kahden vuoden pesti."
+Jatkuvuustoimikunnan PJ,inkubio,functionary,2027-01-01,2027-12-31,"Killan mentoritoiminnan vetäjä + mentorointi jatkuu."
 HV-maisteri,inkubio,functionary,2026-01-01,2026-12-31,"Heitettäköön Vi****n -maisteri. Tarkastaa että kilta ei hävitä mitään 'tärkeää'."
 A.N.K.K.U.R.I.,inkubio,functionary,2026-01-01,2026-12-31,"Akateemisesti N:mmät Kiusaavat Kippareita Usein Rillutellen Intensiivisesti."
-JTMK,ayy,group,2022-01-01,2022-12-31,"Päävastuina läpi vuoden graafinen puoli."
-Museotoimikunta,ayy,group,2025-01-01,2025-12-31,"Opas"
-Museojaosto,ayy,group,2026-01-01,2026-12-31,"Fuksikierrokset"
+JTMK,ayy,functionary,2022-01-01,2022-12-31,"Päävastuina läpi vuoden graafinen puoli."
+Museo-opas,ayy,functionary,2025-01-01,2025-12-31,"Opas"
+Museojaosto,ayy,functionary,2026-01-01,2026-12-31,"Kierrosvastaava"
 Tuutori,ho,functionary,2025-03-04,2025-12-06,
 Toimittaja-taittaja,ho,functionary,2025-01-01,2025-12-31,"Osakunnan lehden, Hälläpyörän, toimittaja sekä taittaja."
 Päätoimittaja,ho,functionary,2026-01-01,2026-12-31,"Hälläpyörän puolikas päätoimittaja."
@@ -39,7 +40,7 @@ Hallitus,iw,functionary,2026-07-01,2027-06-30,
 Apuohjaaja,tspeksi,functionary,2022-10-01,2023-05-01,"Ohjaajan oikea käsi ja vastuussa produktion 'taiteellisesta' puolesta näytöskaudella"
 Sanoittaja,tspeksi,functionary,2023-10-01,2024-05-01,
 Sanoittaja,tspeksi,functionary,2024-10-01,2025-05-01,
-Jotain pientä,tspeksi,group,2025-10-01,2026-05-01,"Wappulehti.txt.2026&25&24 tuli tekaistua kun oli hieman backlogia, mutta ei juuri muuta."
+Jotain pientä,tspeksi,functionary,2025-10-01,2026-05-01,"Wappulehti.txt.2026&25&24 tuli tekaistua kun oli hieman backlogia, mutta ei juuri muuta."
 Kääntäjä,fspeksi,functionary,2023-06-01,2023-10-31,
 Graafikko,fspeksi,functionary,2025-06-01,2025-10-31,
 Studax,as,functionary,2025-06-04,2026-02-22,"Academia Studentica - Polyteekkarifuksikasvatus"
