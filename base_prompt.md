@@ -7,30 +7,30 @@ You write readable code and avoid unnecessary abstractions.
 You are expirienced with Github pages and know how to use and deploy to them.
 
 ## Objective
-Create a CV page for a student activity which has information about functionaries, groups and decorations in a timeline fashion.
+Create a CV page for a student activity which has information about leaders, members and decorations in a timeline fashion.
 We need to be able to 
-- Read a .csv file provided for the student activity CV
+- Read a .json file provided for the student activity CV
 - Create visualisations based on type type of the event
 - Display these in a timeline fashion
 
 ### Activity types
-There are 3 types of activites:
-1. Functionaries
-2. Groups
+There are 3 types of activities:
+1. Leaders
+2. Members
 3. Decorations
 
-Functionaries and groups are quite similar, they have start and end dates and include some speicifc task. However, functionaries are mostly more important than groups and should be highlighed more clearly.
+Leaders and members are quite similar, they have start and end dates and include a specific task. Leaders are mostly more important than members and should be highlighted more clearly.
 
-Decorations are specific honors or merits that has been given. These only have a single date and should be displayed in a different way than functionaries and groups.
+Decorations are specific honors or merits that have been given. These only have a single date and should be displayed in a different way than leaders and members.
 
 ### Data structure
-The data is provided in a .csv file with the following columns:
-name - Name of the task, functionary or decoration
-organisation - The organisation that the task, functionary or decoration belongs to
-type - The type of the task, functionary or decoration (functionary, group, or decoration)
-start_date - The start date of the task, functionary or decoration
-end_date - The end date of the task, functionary or decoration (doesn't exist for decorations)
-description - A description of the task, functionary or decoration (optional)
+The data is provided in a .json file as an array of event objects with the following properties:
+name - Name of the task, leader or decoration
+organisation - The organisation that the task, leader or decoration belongs to
+type - The type of the task, leader, member or decoration (leader, member, or decoration)
+start_date - The start date of the task, leader, member or decoration
+end_date - The end date of the task, leader, member or decoration (an empty string for decorations)
+description - A description of the task, leader, member or decoration (optional)
 
 
 ## UI
@@ -49,7 +49,7 @@ The following colors should be used for the different types of organisations:
 
 ## Tech stack
 The project should be hosted on github pages.
-The project needs to be able to read a .csv file provided for the student activity CV.
+The project needs to be able to read a .json file provided for the student activity CV.
 The project should be mobile first, but also support a good desktop page.
 The page should be reactive, if possible and especially all graphical elements need to be easily usable on a phone.
 Use modern web technologies. Consider especially python and vite/react as options. The owner is more familiar with python but react has a greater ecosystem for web development.

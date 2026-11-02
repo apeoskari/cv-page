@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState, useMemo, useRef } from 'react';
-import Papa from 'papaparse';
 import { differenceInDays, parseISO, isValid, max, format, getYear } from 'date-fns';
 import { Award, Briefcase, Users, X, Settings2, Plus, Trash2 } from 'lucide-react';
 import { ORGANIZATION_COLORS, DEFAULT_ORGANIZATION_COLOR, NEW_ORGANIZATION_DEFAULT_COLOR } from './constants/organizationColors';
@@ -12,6 +11,21 @@ interface EventRecord {
   end_date: string;
   description: string;
   tags?: string;
+}
+
+function isEventRecord(value: unknown): value is EventRecord {
+  if (typeof value !== 'object' || value === null) return false;
+
+  const record = value as Record<string, unknown>;
+  return (
+    typeof record.name === 'string' &&
+    typeof record.organisation === 'string' &&
+    typeof record.type === 'string' &&
+    typeof record.start_date === 'string' &&
+    typeof record.end_date === 'string' &&
+    typeof record.description === 'string' &&
+    (record.tags === undefined || typeof record.tags === 'string')
+  );
 }
 
 interface SubEvent {
@@ -72,25 +86,22 @@ export default function App() {
   const [newOrgColor, setNewOrgColor] = useState(NEW_ORGANIZATION_DEFAULT_COLOR);
 
   useEffect(() => {
-    const fetchCSV = async () => {
+    const fetchData = async () => {
       try {
         const basePath = import.meta.env.BASE_URL || '/';
-        const res = await fetch(`${basePath}data.csv`);
-        if (!res.ok) throw new Error('Failed to load data.csv');
-        const text = await res.text();
-        Papa.parse<EventRecord>(text, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            setRawEvents(results.data);
-          },
-          error: (err: any) => setLoadError(err.message),
-        });
-      } catch (e: any) {
-        setLoadError(e.message);
+        const res = await fetch(`${basePath}data.json`);
+        if (!res.ok) throw new Error('Failed to load data.json');
+
+        const data: unknown = await res.json();
+        if (!Array.isArray(data) || !data.every(isEventRecord)) {
+          throw new Error('Invalid data.json format');
+        }
+        setRawEvents(data);
+      } catch (error) {
+        setLoadError(error instanceof Error ? error.message : 'Failed to load data.json');
       }
     };
-    fetchCSV();
+    fetchData();
   }, []);
 
   const searchParams = new URLSearchParams(window.location.search);
@@ -272,7 +283,7 @@ export default function App() {
     };
 
     if (grouping === 'none') {
-      processEntityGroup('Roles & Groups', roleEvents);
+      processEntityGroup('Leaders & Members', roleEvents);
     } else {
       const distinctKeys = Array.from(new Set(roleEvents.map(e => e[grouping] as string)));
       
@@ -546,7 +557,7 @@ export default function App() {
             const orgColor = colors[ev.organisation] || DEFAULT_ORGANIZATION_COLOR;
             const normalizedType = ev.type?.trim().toLowerCase();
             const isDecoration = normalizedType === 'decoration';
-            const isFunctionary = normalizedType === 'functionary';
+            const isLeader = normalizedType === 'leader';
             const isExpanded = expandedId === ev.id;
 
             return (
@@ -587,9 +598,9 @@ export default function App() {
                   <div 
                     className={`h-full w-full rounded shadow-sm overflow-hidden flex items-center px-2 border relative group`}
                     style={{ 
-                       backgroundColor: isFunctionary ? orgColor : `${orgColor}1A`,
-                       borderColor: isFunctionary ? 'transparent' : orgColor, 
-                       color: isFunctionary ? 'white' : orgColor 
+                       backgroundColor: isLeader ? orgColor : `${orgColor}1A`,
+                       borderColor: isLeader ? 'transparent' : orgColor,
+                       color: isLeader ? 'white' : orgColor
                     }}
                     title={ev.name}
                   >
@@ -618,7 +629,7 @@ export default function App() {
                     </button>
                     
                     <div className="flex items-center gap-2 mb-3">
-                      {isDecoration ? <Award size={16} style={{ color: orgColor }} /> : isFunctionary ? <Briefcase size={16} style={{ color: orgColor }} /> : <Users size={16} style={{ color: orgColor }} />}
+                      {isDecoration ? <Award size={16} style={{ color: orgColor }} /> : isLeader ? <Briefcase size={16} style={{ color: orgColor }} /> : <Users size={16} style={{ color: orgColor }} />}
                       <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full" style={{ color: orgColor, backgroundColor: `${orgColor}1A` }}>
                         {ev.organisation} • {ev.type}
                       </span>

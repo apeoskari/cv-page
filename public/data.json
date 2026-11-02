@@ -1,0 +1,410 @@
+[
+  {
+    "name": "Fuksispektaakkeli",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2021-01-15",
+    "end_date": "2021-03-06",
+    "description": "Fuksien perinteinen esitys osana Apoptoosin ohjelmaa. Neljän hengen tiimin voimin työstetty."
+  },
+  {
+    "name": "ISO",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2021-04-15",
+    "end_date": "2022-05-01",
+    "description": ""
+  },
+  {
+    "name": "Opinto-ISO",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2022-05-13",
+    "end_date": "2023-05-01",
+    "description": "ISO, jonka tarkoituksena on keskittää fuksien opintoihin liittyvät huolet, murheet ja kysymykset."
+  },
+  {
+    "name": "N-ISO",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2024-05-09",
+    "end_date": "2027-05-01",
+    "description": "N:nen vuoden opiskelija ja ISO, joka kertoo fukseille miten asiat oikeasti ovat."
+  },
+  {
+    "name": "Rekombionaatiotoimari",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "description": "Otaniemi Rekon järkkäystä 2022, päävastuuna grafiikat."
+  },
+  {
+    "name": "Lukkari",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2022-01-01",
+    "end_date": "2024-12-31",
+    "description": ""
+  },
+  {
+    "name": "Lukkari",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": ""
+  },
+  {
+    "name": "KV-toimari",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "description": "Ensimmäistä kertaa killassa testattiin KV-toimareita. Pääpointtina oli esim. toimia kääntäjänä kun tekoäly ei vielä ollut sitä helpoittamassa."
+  },
+  {
+    "name": "Fuksikapteeni",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2023-01-01",
+    "end_date": "2024-04-30",
+    "description": "Fuksit'23 <3"
+  },
+  {
+    "name": "Häirintäyhdyshenkilö",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2023-01-01",
+    "end_date": "2024-12-31",
+    "description": ""
+  },
+  {
+    "name": "Päätoimittaja",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "description": "Killan lehden S'napsin toinen päätoimitttajista."
+  },
+  {
+    "name": "Puheenjohtaja",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": "Inkuhali'25 <3"
+  },
+  {
+    "name": "Akateeminen komitea (ELEC)",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": ""
+  },
+  {
+    "name": "Kandidaattikoulutusneuvosto",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": "Varajäsen"
+  },
+  {
+    "name": "LifeTech Programme committee",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": ""
+  },
+  {
+    "name": "LifeTech Programme committee",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Varajäsen"
+  },
+  {
+    "name": "Bioinformaatioteknologian kandidaattiohjelman koulutusneuvosto",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "BioIT:n ensimmäinen oma koulutusneuvosto uudistettavan kanditutkinnon myötä."
+  },
+  {
+    "name": "Apoptoosi XXI -toimari",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2024-06-01",
+    "end_date": "2025-03-07",
+    "description": ""
+  },
+  {
+    "name": "Spagukastike",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2026-12-31",
+    "description": "Spagu = Koodi, eli killan koodeihin koskeva toimikunta jossa hääräilin erityisesti KiltisBot:in kanssa. Ikuisuusprojektina killan nettisivut."
+  },
+  {
+    "name": "Killan edustaja TK:ssa",
+    "organisation": "teekkarius",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2026-12-31",
+    "description": "TK = Teekkarikokous"
+  },
+  {
+    "name": "Laulukirjatoimikunnan PJ",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2026-01-01",
+    "end_date": "2027-03-01",
+    "description": "VIRPIn neljännestä numerosta vastuussa oleva toimikunta, jonka toisena puheenjohtaja olin."
+  },
+  {
+    "name": "Arkistonhoitaja",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2026-01-01",
+    "end_date": "2027-12-31",
+    "description": "Kenties se arkisto viimein luetteloidaan..."
+  },
+  {
+    "name": "Mentori",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Mentorina hallituslaiselle jos toiselle. Kahden vuoden pesti."
+  },
+  {
+    "name": "Jatkuvuustoimikunnan PJ",
+    "organisation": "inkubio",
+    "type": "leader",
+    "start_date": "2027-01-01",
+    "end_date": "2027-12-31",
+    "description": "Killan mentoritoiminnan vetäjä + mentorointi jatkuu."
+  },
+  {
+    "name": "HV-maisteri",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Heitettäköön Vi****n -maisteri. Tarkastaa että kilta ei hävitä mitään 'tärkeää'."
+  },
+  {
+    "name": "A.N.K.K.U.R.I.",
+    "organisation": "inkubio",
+    "type": "member",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Akateemisesti N:mmät Kiusaavat Kippareita Usein Rillutellen Intensiivisesti."
+  },
+  {
+    "name": "JTMK",
+    "organisation": "ayy",
+    "type": "member",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "description": "Päävastuina läpi vuoden graafinen puoli."
+  },
+  {
+    "name": "Museo-opas",
+    "organisation": "ayy",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": "Opas"
+  },
+  {
+    "name": "Museojaosto",
+    "organisation": "ayy",
+    "type": "leader",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Kierrosvastaava"
+  },
+  {
+    "name": "Tuutori",
+    "organisation": "ho",
+    "type": "member",
+    "start_date": "2025-03-04",
+    "end_date": "2025-12-06",
+    "description": ""
+  },
+  {
+    "name": "Toimittaja-taittaja",
+    "organisation": "ho",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "description": "Osakunnan lehden, Hälläpyörän, toimittaja sekä taittaja."
+  },
+  {
+    "name": "Päätoimittaja",
+    "organisation": "ho",
+    "type": "leader",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "description": "Hälläpyörän puolikas päätoimittaja."
+  },
+  {
+    "name": "Kesäisäntä",
+    "organisation": "ho",
+    "type": "leader",
+    "start_date": "2026-08-01",
+    "end_date": "2026-08-31",
+    "description": ""
+  },
+  {
+    "name": "Hallitus",
+    "organisation": "mafia",
+    "type": "leader",
+    "start_date": "2022-08-01",
+    "end_date": "2023-07-31",
+    "description": ""
+  },
+  {
+    "name": "Hallitus",
+    "organisation": "mafia",
+    "type": "leader",
+    "start_date": "2024-08-01",
+    "end_date": "2025-07-31",
+    "description": "VPJ"
+  },
+  {
+    "name": "Hallitus",
+    "organisation": "mafia",
+    "type": "leader",
+    "start_date": "2026-08-01",
+    "end_date": "2027-07-31",
+    "description": "PJ"
+  },
+  {
+    "name": "Puheenjohtaja",
+    "organisation": "iw",
+    "type": "leader",
+    "start_date": "2025-06-23",
+    "end_date": "2026-06-30",
+    "description": "MAYDAY! katso daymay.fi"
+  },
+  {
+    "name": "Hallitus",
+    "organisation": "iw",
+    "type": "leader",
+    "start_date": "2026-07-01",
+    "end_date": "2027-06-30",
+    "description": ""
+  },
+  {
+    "name": "Apuohjaaja",
+    "organisation": "tspeksi",
+    "type": "leader",
+    "start_date": "2022-10-01",
+    "end_date": "2023-05-01",
+    "description": "Ohjaajan oikea käsi ja vastuussa produktion 'taiteellisesta' puolesta näytöskaudella"
+  },
+  {
+    "name": "Sanoittaja",
+    "organisation": "tspeksi",
+    "type": "member",
+    "start_date": "2023-10-01",
+    "end_date": "2024-05-01",
+    "description": ""
+  },
+  {
+    "name": "Sanoittaja",
+    "organisation": "tspeksi",
+    "type": "member",
+    "start_date": "2024-10-01",
+    "end_date": "2025-05-01",
+    "description": ""
+  },
+  {
+    "name": "Jotain pientä",
+    "organisation": "tspeksi",
+    "type": "member",
+    "start_date": "2025-10-01",
+    "end_date": "2026-05-01",
+    "description": "Wappulehti.txt.2026&25&24 tuli tekaistua kun oli hieman backlogia, mutta ei juuri muuta."
+  },
+  {
+    "name": "Kääntäjä",
+    "organisation": "fspeksi",
+    "type": "member",
+    "start_date": "2023-06-01",
+    "end_date": "2023-10-31",
+    "description": ""
+  },
+  {
+    "name": "Graafikko",
+    "organisation": "fspeksi",
+    "type": "member",
+    "start_date": "2025-06-01",
+    "end_date": "2025-10-31",
+    "description": ""
+  },
+  {
+    "name": "Studax",
+    "organisation": "as",
+    "type": "member",
+    "start_date": "2025-06-04",
+    "end_date": "2026-02-22",
+    "description": "Academia Studentica - Polyteekkarifuksikasvatus"
+  },
+  {
+    "name": "Licensus",
+    "organisation": "as",
+    "type": "member",
+    "start_date": "2026-02-23",
+    "end_date": "2028-12-31",
+    "description": "'Perustettiin' kapinallinen paikallishaara."
+  },
+  {
+    "name": "Kultainen ansiomerkki",
+    "organisation": "inkubio",
+    "type": "decoration",
+    "start_date": "2026-03-07",
+    "end_date": "",
+    "description": ""
+  },
+  {
+    "name": "superISO",
+    "organisation": "inkubio",
+    "type": "decoration",
+    "start_date": "2022-05-20",
+    "end_date": "",
+    "description": ""
+  },
+  {
+    "name": "Toimaripalkinto",
+    "organisation": "inkubio",
+    "type": "decoration",
+    "start_date": "2022-05-23",
+    "end_date": "",
+    "description": "Kansainvälisyystoimukunta"
+  },
+  {
+    "name": "Toimaripalkinto",
+    "organisation": "inkubio",
+    "type": "decoration",
+    "start_date": "2025-05-24",
+    "end_date": "",
+    "description": "Spagutoimikunta"
+  },
+  {
+    "name": "Toimaripalkinto",
+    "organisation": "inkubio",
+    "type": "decoration",
+    "start_date": "2024-05-24",
+    "end_date": "",
+    "description": "Häirintäyhdyshenkilö"
+  }
+]
