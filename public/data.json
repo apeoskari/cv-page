@@ -5,7 +5,7 @@
     "type": "member",
     "start_date": "2021-01-15",
     "end_date": "2021-03-06",
-    "description": "Fuksien perinteinen esitys osana Apoptoosin ohjelmaa. Neljän hengen tiimin voimin työstetty."
+    "description": "Fuksien perinteinen spektaakkelimainen esitys osana Apoptoosin ohjelmaa. Neljän hengen tiimin voimin työstetty ja ansaittiin tällä työnakkipiste ja sen myötä fuksitohtorius (rimaa laskettiin koronan takia huomattavasti)."
   },
   {
     "name": "ISO",
@@ -69,7 +69,7 @@
     "type": "leader",
     "start_date": "2023-01-01",
     "end_date": "2024-04-30",
-    "description": "Fuksit'23 <3"
+    "description": "Fuksit'23 <3. Killan ensimmäinen kipparipari ja tehtiin jos jonkinmoista pientä uudistusta toimintaan kun kaksin siihen oli resursseja."
   },
   {
     "name": "Häirintäyhdyshenkilö",
@@ -85,7 +85,7 @@
     "type": "leader",
     "start_date": "2024-01-01",
     "end_date": "2024-12-31",
-    "description": "Killan lehden S'napsin toinen päätoimitttajista."
+    "description": "Killan lehden, S'napsin, toinen päätoimittaja. Rikottiin kymmenvuotisia perinteitä ja levitettiin S'napsin muotoa yli sen rajojen."
   },
   {
     "name": "Puheenjohtaja",
@@ -93,7 +93,7 @@
     "type": "leader",
     "start_date": "2025-01-01",
     "end_date": "2025-12-31",
-    "description": "Inkuhali'25 <3"
+    "description": "Inkuhali'25 <3. Hallintoa, tekemistä jne. 1kpl sääntömuutos ja 2 ohjesääntöä ekan 3kk aikana xD."
   },
   {
     "name": "Akateeminen komitea (ELEC)",
@@ -101,10 +101,10 @@
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2025-12-31",
-    "description": ""
+    "description": "Varsinainen jäsen"
   },
   {
-    "name": "Kandidaattikoulutusneuvosto",
+    "name": "Kandidaattikoulutusneuvosto (ELEC)",
     "organisation": "inkubio",
     "type": "member",
     "start_date": "2025-01-01",
@@ -117,7 +117,7 @@
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2025-12-31",
-    "description": ""
+    "description": "Varsinainen jäsen"
   },
   {
     "name": "LifeTech Programme committee",
@@ -128,12 +128,12 @@
     "description": "Varajäsen"
   },
   {
-    "name": "Bioinformaatioteknologian kandidaattiohjelman koulutusneuvosto",
+    "name": "BioIT-kandidaattiohjelman koulutusneuvosto",
     "organisation": "inkubio",
     "type": "member",
     "start_date": "2026-01-01",
     "end_date": "2026-12-31",
-    "description": "BioIT:n ensimmäinen oma koulutusneuvosto uudistettavan kanditutkinnon myötä."
+    "description": "BioIT:n ensimmäinen oma koulutusneuvosto uudistetun kanditutkinnon myötä. Katsotaan miten uusi ohjelma lähtee liikkeelle."
   },
   {
     "name": "Apoptoosi XXI -toimari",
@@ -141,14 +141,14 @@
     "type": "member",
     "start_date": "2024-06-01",
     "end_date": "2025-03-07",
-    "description": ""
+    "description": "Yleisnakkeilija ja järkkääjä tukemassa vuosijuhlien teossa. ps. älkää olko PJ ja järkätkö vujui samaan aikaan."
   },
   {
     "name": "Spagukastike",
     "organisation": "inkubio",
     "type": "member",
     "start_date": "2025-01-01",
-    "end_date": "2026-12-31",
+    "end_date": "2027-12-31",
     "description": "Spagu = Koodi, eli killan koodeihin koskeva toimikunta jossa hääräilin erityisesti KiltisBot:in kanssa. Ikuisuusprojektina killan nettisivut."
   },
   {
@@ -157,15 +157,15 @@
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2026-12-31",
-    "description": "TK = Teekkarikokous"
+    "description": "TK = Teekkarikokous. Killan edustajana kaksi vuotta. Aina äänessä kun tarvitaan lisää rakentavaa keskustelua."
   },
   {
     "name": "Laulukirjatoimikunnan PJ",
     "organisation": "inkubio",
     "type": "leader",
     "start_date": "2026-01-01",
-    "end_date": "2027-03-01",
-    "description": "VIRPIn neljännestä numerosta vastuussa oleva toimikunta, jonka toisena puheenjohtaja olin."
+    "end_date": "2027-027-02",
+    "description": "VIRPIn neljännestä numerosta vastuussa oleva toimikunta, jonka toisena puheenjohtaja olin. VIRPI IV julkisetaan Apoptoosi XXIII -juhlaviikolla helmikuussa 2027."
   },
   {
     "name": "Arkistonhoitaja",
@@ -213,7 +213,7 @@
     "type": "member",
     "start_date": "2022-01-01",
     "end_date": "2022-12-31",
-    "description": "Päävastuina läpi vuoden graafinen puoli."
+    "description": "Päävastuina läpi vuoden graafinen puoli. Ensimmäiset kunnon bileet sitten koronan ja mm jopa LL myi loppuun!"
   },
   {
     "name": "Museo-opas",
@@ -221,7 +221,7 @@
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2025-12-31",
-    "description": "Opas"
+    "description": "Saatoin pitää vahingossa puolet vuoden fuksikierroksista..."
   },
   {
     "name": "Museojaosto",
@@ -229,7 +229,7 @@
     "type": "leader",
     "start_date": "2026-01-01",
     "end_date": "2026-12-31",
-    "description": "Kierrosvastaava"
+    "description": "Kierrosvastaava. Projekteina kierroskässärien uusiminen ja planssien suunnittelu museolle."
   },
   {
     "name": "Tuutori",
@@ -245,7 +245,7 @@
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2025-12-31",
-    "description": "Osakunnan lehden, Hälläpyörän, toimittaja sekä taittaja."
+    "description": "Osakunnan lehden, Hälläpyörän, toimittaja sekä taittaja. Ulkoasu sai pientä kasvojenkohotusta kun pitkästä aikaa oli kokenut taittaja."
   },
   {
     "name": "Päätoimittaja",
@@ -253,7 +253,7 @@
     "type": "leader",
     "start_date": "2026-01-01",
     "end_date": "2026-12-31",
-    "description": "Hälläpyörän puolikas päätoimittaja."
+    "description": "Hälläpyörän puolikas päätoimittaja + taittaminen jatkuu."
   },
   {
     "name": "Kesäisäntä",
@@ -261,7 +261,7 @@
     "type": "leader",
     "start_date": "2026-08-01",
     "end_date": "2026-08-31",
-    "description": ""
+    "description": "Vastuussa Koivuniemen menoista elokuun ajan. 'Ei olla ikinä nähty Koivuniemeä näin siistinä' -Vanha Kävijä"
   },
   {
     "name": "Hallitus",
@@ -269,7 +269,7 @@
     "type": "leader",
     "start_date": "2022-08-01",
     "end_date": "2023-07-31",
-    "description": ""
+    "description": "Mafian ensimmäinen hallitus, jonka vuonna toiminta suorastaan raketoi. Esko Baari"
   },
   {
     "name": "Hallitus",
@@ -280,12 +280,12 @@
     "description": "VPJ"
   },
   {
-    "name": "Hallitus",
+    "name": "Puheenjohtaja",
     "organisation": "mafia",
     "type": "leader",
     "start_date": "2026-08-01",
     "end_date": "2027-07-31",
-    "description": "PJ"
+    "description": "Lol tähänkin saatiin huijaatua mutta lupasin/vannoin hoitavani ainoastaan pakollisen byrokratian."
   },
   {
     "name": "Puheenjohtaja",
@@ -301,7 +301,7 @@
     "type": "leader",
     "start_date": "2026-07-01",
     "end_date": "2027-06-30",
-    "description": ""
+    "description": "Yleinen hallituksen jäsen katsomassa vielä vuoden perään että miten hommat hoituu."
   },
   {
     "name": "Apuohjaaja",
@@ -309,7 +309,7 @@
     "type": "leader",
     "start_date": "2022-10-01",
     "end_date": "2023-05-01",
-    "description": "Ohjaajan oikea käsi ja vastuussa produktion 'taiteellisesta' puolesta näytöskaudella"
+    "description": "Ohjaajan oikea käsi ja vastuussa produktion 'taiteellisesta' puolesta näytöskaudella. Heti syvään päätyyn."
   },
   {
     "name": "Sanoittaja",
@@ -334,6 +334,22 @@
     "start_date": "2025-10-01",
     "end_date": "2026-05-01",
     "description": "Wappulehti.txt.2026&25&24 tuli tekaistua kun oli hieman backlogia, mutta ei juuri muuta."
+  },
+  {
+    "name": "Grafiikatiimi",
+    "organisation": "tspeksi",
+    "type": "member",
+    "start_date": "2026-10-01",
+    "end_date": "2027-05-01",
+    "description": "Jos ny yks käsiohjelma tehtäis."
+  },
+  {
+    "name": "Jotain pientä",
+    "organisation": "tspeksi",
+    "type": "member",
+    "start_date": "2026-10-01",
+    "end_date": "2027-05-01",
+    "description": ""
   },
   {
     "name": "Kääntäjä",
