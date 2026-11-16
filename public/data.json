@@ -152,12 +152,20 @@
     "description": "Spagu = Koodi, eli killan koodeihin koskeva toimikunta jossa hääräilin erityisesti KiltisBot:in kanssa. Ikuisuusprojektina killan nettisivut."
   },
   {
-    "name": "Killan edustaja TK:ssa",
+    "name": "Teekkarikokous",
     "organisation": "teekkarius",
     "type": "member",
     "start_date": "2025-01-01",
     "end_date": "2026-12-31",
-    "description": "TK = Teekkarikokous. Killan edustajana kaksi vuotta. Aina äänessä kun tarvitaan lisää rakentavaa keskustelua."
+    "description": "Killan varsinaisena edustajana kaksi vuotta. Aina äänessä kun tarvitaan lisää rakentavaa keskustelua."
+  },
+  {
+    "name": "Teekkarikokous",
+    "organisation": "teekkarius",
+    "type": "member",
+    "start_date": "2025-01-01",
+    "end_date": "2026-12-31",
+    "description": "Killan varaedustajana."
   },
   {
     "name": "Laulukirjatoimikunnan PJ",
