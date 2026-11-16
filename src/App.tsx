@@ -286,22 +286,7 @@ export default function App() {
       processEntityGroup('Leaders & Members', roleEvents);
     } else {
       const distinctKeys = Array.from(new Set(roleEvents.map(e => e[grouping] as string)));
-      
-      if (grouping === 'organisation') {
-         const order = ['tf', 'ayy', 'teekkarius', 'stf', 'hankkijat'];
-         distinctKeys.sort((a, b) => {
-            const aStr = String(a).toLowerCase();
-            const bStr = String(b).toLowerCase();
-            const aIdx = order.indexOf(aStr);
-            const bIdx = order.indexOf(bStr);
-            if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
-            if (aIdx !== -1) return -1;
-            if (bIdx !== -1) return 1;
-            return aStr.localeCompare(bStr);
-         });
-      } else {
-         distinctKeys.sort();
-      }
+      distinctKeys.sort();
 
       for (const key of distinctKeys) {
         processEntityGroup(key.toUpperCase(), roleEvents.filter(e => e[grouping] === key));
