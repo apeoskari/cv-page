@@ -261,7 +261,23 @@
     "type": "leader",
     "start_date": "2026-08-01",
     "end_date": "2026-08-31",
-    "description": "Vastuussa Koivuniemen menoista elokuun ajan. 'Ei olla ikinä nähty Koivuniemeä näin siistinä' -Vanha Kävijä"
+    "description": "Vastuussa Koivuniemen menoista elokuun ajan. 'Ei olla ikinä nähty Koivuniemeä näin siistinä' -Vanha Kävijä."
+  },
+  {
+    "name": "Arkistonhoitaja",
+    "organisation": "ho",
+    "type": "leader",
+    "start_date": "2027-01-01",
+    "end_date": "2027-12-31",
+    "description": "Hämäläis-Osakunnan arkistonhoitaja."
+  },
+  {
+    "name": "Hallituksen jäsen",
+    "organisation": "ho",
+    "type": "leader",
+    "start_date": "2027-01-01",
+    "end_date": "2027-12-31",
+    "description": "Hämäläis-Osakunnan hallituksen jäsen. Ah hallintoa eikä muuta."
   },
   {
     "name": "Hallitus",
